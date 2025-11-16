@@ -43,3 +43,7 @@ image {
 .gallery-image:hover {
   transform: scale(1.05);
 }
+
+.sl-overlay {
+  background: rgba(0, 0, 0, 0.9);
+}

@@ -1,21 +1,25 @@
 .header {
   padding: 20px 0;
 }
+
 .nav {
   display: flex;
   justify-content: space-between;
 }
+
 .nav-logo {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
+
 .nav-list {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 40px;
 }
+
 .nav-link {
   position: relative;
   display: block;
@@ -23,10 +27,12 @@
   letter-spacing: 0.02em;
   transition: 200ms ease-in;
 }
+
 .nav-link:hover,
 .nav-link:focus {
   color: #747bff;
 }
+
 .nav-link::after {
   content: '';
   position: absolute;
@@ -39,6 +45,55 @@
   transform-origin: center;
   animation: stretch 400ms cubic-bezier(0.68, -0.55, 0.27, 1.55) 200ms both;
 }
+
 .nav-link.active::after {
   background: #747bff;
+}
+
+
+
+
+.feedback-form {
+
+  row-gap: 16px;
+
+}
+
+.feedback-form-label {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.feedback-form-input,
+.feedback-form-message {
+  width: 100%;
+  /* 🔥 ключова правка */
+  box-sizing: border-box;
+  /* важливо! */
+  border: 1px solid #303030;
+  padding: 12px 15px;
+  font-size: 16px;
+}
+
+.feedback-form-input {
+  height: 40px;
+}
+
+.feedback-form-message {
+  height: 120px;
+  resize: none;
+}
+
+.feedback-form-submit {
+  border-radius: 8px;
+  padding: 8px 16px;
+  background: #4e75ff;
+  min-width: 95px;
+  height: 40px;
+  cursor: pointer;
+  color: white;
+  border: none;
+  transition: transform 250ms linear;
+  align-self: flex-start;
 }

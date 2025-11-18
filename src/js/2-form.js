@@ -1,44 +1,44 @@
-// const refs = {
-//     feedbackForm: document.querySelector('.js-feedback-form'),
-// };
+const refs = {
+    feedbackForm: document.querySelector('.feedback-form'),
+};
+let formData = {
+    email: '',
+    message: '',
+};
 
-// let formData = {};
+const fillFeedbackForm = () => {
+    const formDataFromLS = JSON.parse(localStorage.getItem('feedback-form-state'));
+    if (formDataFromLS === null) {
+        return;
+    }
+    formData = formDataFromLS;
+    const formDataFromLSKeys = Object.keys(formDataFromLS);
+    formDataFromLSKeys.forEach(key => {
+        refs.feedbackForm.elements[key].value = formDataFromLS[key];
+    });
+};
+fillFeedbackForm();
 
-// const fillFeedbackFormFields = () => {
-//     const formDataFromLS = JSON.parse(localStorage.getItem('feedback-form-state'));
+const onFeedbackFormInput = ({ target: formField }) => {
+    const formFieldName = formField.name;
+    const formFieldValue = formField.value.trim();
+    formData[formFieldName] = formFieldValue;
+    localStorage.setItem('feedback-form-state', JSON.stringify(formData));
+};
 
-//     if (formDataFromLS === null) {
-//         return;
-//     }
+const onFeedbackFormSubmit = event => {
+    event.preventDefault();
+    const emailField = refs.feedbackForm.elements.email;
+    const messageField = refs.feedbackForm.elements.message;
+    if (emailField.value.trim() === "" || messageField.value.trim() === "") {
+        alert("Fill please all fields");
+        return;
+    }
+    const { target: feedbackForm } = event;
+    feedbackForm.reset();
+    localStorage.removeItem('feedback-form-state');
+    console.log(formData);
+}
 
-//     formData = formDataFromLS;
-
-//     const formDataFromLSKeys = Object.keys(formDataFromLS);
-
-//     formDataFromLSKeys.forEach(key => {
-//         refs.feedbackForm.elements[key].value = formDataFromLS[key];
-//     });
-// };
-
-// fillFeedbackFormFields();
-
-// const onFeedbackFormFieldChange = ({ target: formField }) => {
-//     const formFieldName = formField.name;
-//     const formFieldValue = formField.value.trim();
-
-//     formData[formFieldName] = formFieldValue;
-
-//     localStorage.setItem('feedback-form-state', JSON.stringify(formData));
-// };
-
-// const onFeedbackFormSubmit = event => {
-//     event.preventDefault();
-
-//     const { target: feedbackForm } = event;
-
-//     feedbackForm.reset();
-//     localStorage.removeItem('feedback-form-state');
-// };
-
-// refs.feedbackForm.addEventListener('change', onFeedbackFormFieldChange);
-// refs.feedbackForm.addEventListener('submit', onFeedbackFormSubmit);
+refs.feedbackForm.addEventListener('input', onFeedbackFormInput);
+refs.feedbackForm.addEventListener('submit', onFeedbackFormSubmit);

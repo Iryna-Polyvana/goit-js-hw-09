@@ -66,10 +66,7 @@ const images = [
 ];
 
 // Додавання розмітки галереї
-const container = document.querySelector('.container');
-const ul = document.createElement('ul');
-container.append(ul);
-ul.classList.add('gallery');
+
 const galleryList = document.querySelector('.gallery');
 
 const galleryImageTemplate = imageCard => {
